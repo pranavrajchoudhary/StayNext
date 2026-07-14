@@ -2,7 +2,7 @@
 const Listing = require("../models/listing");
 const Order = require("../models/Order");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
+const sendMail = require("../utils/sendMail");
  
 module.exports.fetch = async (req, res) => {
   try {
@@ -301,18 +301,130 @@ module.exports.checkout = async (req, res) => {
 
 };
 // STEP 3: Handle success
+
 module.exports.paymentSuccess = async (req, res) => {
   try {
     const { oid } = req.query;
 
-    const order = await Order.findByIdAndUpdate(
-      oid,
-      { status: "paid" },
-      { new: true }
-    ).populate("listing");
+    const bookingReference =
+`STN-${Date.now().toString().slice(-8)}`;
+
+const order = await Order.findByIdAndUpdate(
+
+    oid,
+
+    {
+
+        status: "paid",
+
+        bookingReference
+
+    },
+
+    {
+
+        new: true
+
+    }
+
+)
+
+.populate("listing")
+
+.populate("user");
 
     if (!order) return res.status(404).send("Order not found");
+    await sendMail(
 
+    order.email,
+
+    "Booking Confirmed | StayNest",
+
+    `
+
+    <div style="font-family:Arial,sans-serif;padding:25px;">
+
+        <h2 style="color:#ff5a3d;">
+
+            Booking Confirmed
+
+        </h2>
+
+        <p>
+
+            Hello,
+
+        </p>
+
+        <p>
+
+            Your booking has been confirmed successfully.
+
+        </p>
+
+        <hr>
+
+        <p>
+
+            <strong>Booking ID:</strong>
+
+            ${order.bookingReference}
+
+        </p>
+
+        <p>
+
+            <strong>Property:</strong>
+
+            ${order.listing.title}
+
+        </p>
+
+        <p>
+
+            <strong>Check In:</strong>
+
+            ${new Date(order.fromDate).toLocaleDateString("en-IN")}
+
+        </p>
+
+        <p>
+
+            <strong>Check Out:</strong>
+
+            ${new Date(order.toDate).toLocaleDateString("en-IN")}
+
+        </p>
+
+        <p>
+
+            <strong>Guests:</strong>
+
+            ${order.guests}
+
+        </p>
+
+        <p>
+
+            <strong>Total Paid:</strong>
+
+            ₹ ${order.totalFare}
+
+        </p>
+
+        <hr>
+
+        <p>
+
+            Thank you for choosing StayNest.
+
+        </p>
+
+    </div>
+
+    `
+
+);
    
 
     res.render("user/success.ejs", { order });

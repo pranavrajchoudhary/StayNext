@@ -13,7 +13,12 @@ const orderSchema = new mongoose.Schema({
   phone: String,
   requests: String,
   totalFare: Number,
-  status: { type: String, default: "pending" }
+  bookingReference: {
+    type: String,
+    unique: true,
+    sparse: true
+},
+  status: { type: String, enum: ["pending", "paid", "cancelled"],default: "pending" }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Order", orderSchema);
