@@ -34,7 +34,48 @@ module.exports.edit = async (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-    const { title, description, image, price, location, country } = req.body;
+    
+    //const { title, description, image, price, location, country } = req.body;
+    const {
+
+    title,
+    description,
+    price,
+    location,
+    country,
+
+    amenities = [],
+    houseRules = [],
+    seoTags = []
+
+} = req.body;
+let finalAmenities = amenities;
+let finalHouseRules = houseRules;
+let finalSeoTags = seoTags;
+
+if (typeof finalAmenities === "string") {
+    try {
+        finalAmenities = JSON.parse(finalAmenities);
+    } catch {
+        finalAmenities = [];
+    }
+}
+
+if (typeof finalHouseRules === "string") {
+    try {
+        finalHouseRules = JSON.parse(finalHouseRules);
+    } catch {
+        finalHouseRules = [];
+    }
+}
+
+if (typeof finalSeoTags === "string") {
+    try {
+        finalSeoTags = JSON.parse(finalSeoTags);
+    } catch {
+        finalSeoTags = [];
+    }
+}
     const geoRes = await axios.get("https://nominatim.openstreetmap.org/search", {
         params: {
             q: `${location}, ${country}`,
@@ -48,19 +89,91 @@ module.exports.create = async (req, res) => {
         : [0, 0]; // fallback
 
 
+    // const newListing = new Listing({
+    //     title, description, image: { url: req.file.path, filename: req.file.filename },
+    //     price, location, country,geometry: { type: "Point", coordinates: coords }
+    // });
     const newListing = new Listing({
-        title, description, image: { url: req.file.path, filename: req.file.filename },
-        price, location, country,geometry: { type: "Point", coordinates: coords }
-    });
+
+    title,
+
+    description,
+    image: req.file
+        ? {
+            url: req.file.path,
+            filename: req.file.filename
+        }
+        : undefined,
+
+    price,
+
+    location,
+
+    country,
+
+   amenities: finalAmenities,
+
+houseRules: finalHouseRules,
+
+seoTags: finalSeoTags,
+
+    geometry: {
+
+        type: "Point",
+
+        coordinates: coords
+
+    }
+
+});
     newListing.owner = req.user._id;
     await newListing.save();
-    req.flash("success", "New listing created !")
-    res.redirect(`/listings/${newListing._id}`);
+req.flash("success", "Property published successfully.");    res.redirect(`/listings/${newListing._id}`);
 };
 
 module.exports.update = async (req, res) => {
     const { id } = req.params;
-    const { title, description, price, location, country } = req.body;
+    //const { title, description, price, location, country } = req.body;
+    const {
+
+    title,
+    description,
+    price,
+    location,
+    country,
+
+    amenities = [],
+    houseRules = [],
+    seoTags = []
+
+} = req.body;
+let finalAmenities = amenities;
+let finalHouseRules = houseRules;
+let finalSeoTags = seoTags;
+
+if (typeof finalAmenities === "string") {
+    try {
+        finalAmenities = JSON.parse(finalAmenities);
+    } catch {
+        finalAmenities = [];
+    }
+}
+
+if (typeof finalHouseRules === "string") {
+    try {
+        finalHouseRules = JSON.parse(finalHouseRules);
+    } catch {
+        finalHouseRules = [];
+    }
+}
+
+if (typeof finalSeoTags === "string") {
+    try {
+        finalSeoTags = JSON.parse(finalSeoTags);
+    } catch {
+        finalSeoTags = [];
+    }
+}
     const listing = await Listing.findById(id);
     let imageData = listing.image;
     if (req.file) {
@@ -80,17 +193,45 @@ module.exports.update = async (req, res) => {
     const coords = geoRes.data[0]
         ? [parseFloat(geoRes.data[0].lon), parseFloat(geoRes.data[0].lat)]
         : [0, 0]; // fallback
+    // await Listing.findByIdAndUpdate(id, {
+    //     title,//title here or name
+    //     description,
+    //     image: imageData,
+    //     price,
+    //     location,
+    //     country,
+    //     geometry: { type: "Point", coordinates: coords }
+    // });
     await Listing.findByIdAndUpdate(id, {
-        title,//title here or name
-        description,
-        image: imageData,
-        price,
-        location,
-        country,
-        geometry: { type: "Point", coordinates: coords }
-    });
 
-    req.flash("success", "Listing updated successfully!");
+    title,
+
+    description,
+
+    image: imageData,
+
+    price,
+
+    location,
+
+    country,
+
+    amenities: finalAmenities,
+
+houseRules: finalHouseRules,
+
+seoTags: finalSeoTags,
+
+    geometry: {
+
+        type: "Point",
+
+        coordinates: coords
+
+    }
+
+});
+req.flash("success", "Property updated successfully.");
     res.redirect(`/listings/${id}`);
 };
 

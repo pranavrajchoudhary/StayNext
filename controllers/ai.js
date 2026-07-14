@@ -1,42 +1,56 @@
-const { generateListingAI } = require("../services/aiService");
+const { improveListingAI } = require("../services/aiService");
 
  
-
-module.exports.generateListing = async (req, res) => {
+module.exports.improveListing = async (req, res) => {
 
     try {
 
         const {
-            propertyType,
+
+            title,
+            description,
             location,
-            style,
-            bedrooms,
-            bathrooms,
-            maxGuests
+            country
+
         } = req.body;
 
-        const aiResponse = await generateListingAI({
+        if (!description || description.trim() === "") {
 
-            propertyType,
+            return res.status(400).json({
+
+                success: false,
+
+                message: "Please enter a property description."
+
+            });
+
+        }
+
+        const aiResponse = await improveListingAI({
+
+            title,
+
+            description,
+
             location,
-            style,
-            bedrooms,
-            bathrooms,
-            maxGuests
+
+            country
 
         });
 
         return res.status(200).json(aiResponse);
 
-    } catch (err) {
+    }
 
-        console.error("AI Listing Error:", err);
+    catch (err) {
+
+        console.error("AI Improvement Error:", err);
 
         return res.status(500).json({
 
             success: false,
 
-            message: "Failed to generate AI listing.",
+            message: "Unable to improve listing.",
 
             error: err.message
 

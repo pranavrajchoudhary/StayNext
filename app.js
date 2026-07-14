@@ -24,7 +24,7 @@ const { error } = require("console");
 const dburl = process.env.ATLAS_URL
 const Order = require("./models/Order")
 const mongoURL = process.env.MONGO_URI;
-
+const aiRouter = require("./routes/ai");
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -95,6 +95,7 @@ app.use("/", listingsRouter);
 app.use("/listings", reviewsRouter);
 app.use("/",userRouter);
 app.use("/listings",checkoutRouter)
+app.use("/ai", aiRouter);
 app.get("/payment-success", async (req, res) => {
     try {
     const { oid } = req.query;
