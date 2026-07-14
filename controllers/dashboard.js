@@ -1,128 +1,59 @@
 const Listing = require("../models/listing");
-
 const Order = require("../models/Order");
 
 module.exports.dashboard = async (req, res) => {
 
     try {
 
-        const ownerId = req.user._id;
-
         const listings = await Listing.find({
-
-            owner: ownerId
-
+            owner: req.user._id
         });
 
-        const listingIds = listings.map(listing => listing._id);
+        const listingIds = listings.map(l => l._id);
 
         const orders = await Order.find({
-
             listing: {
-
                 $in: listingIds
-
             }
-
         })
-
         .populate("listing")
+        .sort({ createdAt: -1 });
 
-        .populate("user")
+        const totalRevenue = orders
+            .filter(o => o.status === "paid")
+            .reduce((sum, o) => sum + o.totalFare, 0);
 
-        .sort({
+        const pendingBookings = orders.filter(o => o.status === "pending");
 
-            createdAt: -1
+        const paidBookings = orders.filter(o => o.status === "paid");
+
+        const today = new Date();
+
+        today.setHours(0,0,0,0);
+
+        const arrivalsToday = paidBookings.filter(o => {
+
+            const d = new Date(o.fromDate);
+
+            d.setHours(0,0,0,0);
+
+            return d.getTime() === today.getTime();
 
         });
 
-        const totalProperties = listings.length;
+        res.render("dashboard/index",{
 
-        const totalBookings = orders.length;
+            listings,
 
-        const activeBookings = orders.filter(order =>
+            orders,
 
-            order.status === "paid"
+            totalRevenue,
 
-        ).length;
+            pendingBookings,
 
-        const pendingBookings = orders.filter(order =>
+            arrivalsToday
 
-            order.status === "pending"
-
-        ).length;
-
-        const cancelledBookings = orders.filter(order =>
-
-            order.status === "cancelled"
-
-        ).length;
-
-        const totalRevenue = orders
-
-            .filter(order => order.status === "paid")
-
-            .reduce(
-
-                (sum, order) => sum + order.totalFare,
-
-                0
-
-            );
-
-        const now = new Date();
-
-        const monthlyRevenue = orders
-
-            .filter(order =>
-
-                order.status === "paid" &&
-
-                new Date(order.createdAt).getMonth() === now.getMonth() &&
-
-                new Date(order.createdAt).getFullYear() === now.getFullYear()
-
-            )
-
-            .reduce(
-
-                (sum, order) => sum + order.totalFare,
-
-                0
-
-            );
-
-        res.render(
-
-            "dashboard/index",
-
-            {
-
-                listings,
-
-                orders,
-
-                stats: {
-
-                    totalProperties,
-
-                    totalBookings,
-
-                    activeBookings,
-
-                    pendingBookings,
-
-                    cancelledBookings,
-
-                    totalRevenue,
-
-                    monthlyRevenue
-
-                }
-
-            }
-
-        );
+        });
 
     }
 
@@ -130,13 +61,7 @@ module.exports.dashboard = async (req, res) => {
 
         console.log(err);
 
-        req.flash(
-
-            "error",
-
-            "Unable to load dashboard."
-
-        );
+        req.flash("error","Unable to load dashboard.");
 
         res.redirect("/");
 
