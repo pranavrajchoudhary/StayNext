@@ -100,50 +100,7 @@ app.use("/listings", reviewsRouter);
 app.use("/",userRouter);
 app.use("/listings",checkoutRouter)
 app.use("/ai", aiRouter);
-app.get("/payment-success", async (req, res) => {
-    try {
-    const { oid } = req.query;
 
-    const order = await Order.findByIdAndUpdate(
-      oid,
-      { status: "paid" },
-      { new: true }
-    ).populate("listing");
-
-    if (!order) return res.status(404).send("Order not found");
-
-    
-    res.render("user/success.ejs", { order });
-  } catch (err) {
-    console.error("Payment Success Error:", err);
-    res.status(500).send("Error in success page");
-  }
-});
-
-app.use("/orders", orderRoutes);
-
-const sendMail = require("./utils/sendMail");
-
-app.get("/test-email", async (req, res) => {
-
-    await sendMail(
-
-        process.env.EMAIL_USER,
-
-        "StayNest Email Test",
-
-        `
-        <h2>StayNest Email Test</h2>
-
-        <p>If you're reading this, Nodemailer is configured correctly.</p>
-
-        <p>Your project can now send booking confirmation emails.</p>
-        `
-    );
-
-    res.send("Email Sent Successfully.");
-
-});
 
 // Catch-all 404
 app.use((req, res, next) => {

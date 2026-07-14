@@ -334,6 +334,13 @@ const order = await Order.findByIdAndUpdate(
 .populate("user");
 
     if (!order) return res.status(404).send("Order not found");
+    console.log("\n========== ORDER DATA ==========");
+console.log(order);
+console.log("Email:", order.email);
+console.log("Booking Ref:", order.bookingReference);
+console.log("Listing:", order.listing?.title);
+console.log("===============================\n");
+console.log("Calling sendMail...");
     await sendMail(
 
     order.email,
@@ -425,11 +432,16 @@ const order = await Order.findByIdAndUpdate(
     `
 
 );
-   
+   console.log("sendMail Finished.");
 
     res.render("user/success.ejs", { order });
   } catch (err) {
-    
+
+    console.error("========== PAYMENT SUCCESS ERROR ==========");
+    console.error(err);
+    console.error("===========================================");
+
     res.status(500).send("Error in success page");
-  }
+
+}
 };

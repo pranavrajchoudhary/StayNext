@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 async function sendMail(to, subject, html) {
 
     try {
-
+        console.log("Sending email to:", to);
         const info = await transporter.sendMail({
 
             from: `"StayNest" <${process.env.EMAIL_USER}>`,
@@ -40,11 +40,15 @@ async function sendMail(to, subject, html) {
 
     catch(err){
 
-        console.log("Mail Error");
+    console.log("========== MAIL ERROR ==========");
 
-        console.log(err);
+    console.error(err);
 
-    }
+    console.log("===============================");
+
+    throw err;
+
+}
 
 }
 
