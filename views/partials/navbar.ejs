@@ -1,39 +1,174 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="/nav.css">
-<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-zeHGQI4HvdJxsC9z28tZ9_gpIPE0hDM73Q&s">
+
+<link rel="icon" href="/staynesticon.png" type="image/x-icon">
+
 <nav class="navbar">
-    <div class="logo"><a href="/"><i class="fas fa-compass"></i> WanderLust</a></div>
+
+    <div class="logo">
+
+        <a href="/">
+
+            <i class="fa-solid fa-house-chimney-window"></i>
+
+            <span class="brand">
+
+                StayNest
+
+            </span>
+
+            <span class="beta">
+
+                AI
+
+            </span>
+
+        </a>
+
+    </div>
 
     <ul class="nav-links" id="nav-links">
-        <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="/listings"><i class="fas fa-list"></i>All Listings</a></li>
-        <li><a href="/listings/new"><i class="fas fa-plus"></i>Add New Listings</a></li>
-        <li><a href="/orders/my-bookings">My Bookings</a></li>
 
-        <% if(!currUser) {%>
-            <li><a href="/auth"><i class="fas fa-user"></i>Log in/Sign up</a></li>
+        <li>
 
-            <% } %>
-                <% if(currUser) {%>
-                    <li><a href="/logout"><i class="fas fa-user"></i>Log out</a></li>
+            <a href="/">
 
-                    <% } %>
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/listings">
+
+                <i class="fa-solid fa-hotel"></i>
+
+                Properties
+
+            </a>
+
+        </li>
+
+        <% if(currUser){ %>
+
+        <li>
+
+            <a href="/listings/new">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Property
+
+            </a>
+
+        </li>
+
+        <% } %>
+
+        <% if(currUser){ %>
+
+        <li>
+
+            <a href="/orders/my-bookings">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                Reservations
+
+            </a>
+
+        </li>
+
+        <% } %>
+
+        <!-- Future Dashboard -->
+
+        <% if(currUser){ %>
+
+        <li>
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <% } %>
+
+        <% if(!currUser){ %>
+
+        <li>
+
+            <a href="/auth">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login
+
+            </a>
+
+        </li>
+
+        <% } %>
+
+        <% if(currUser){ %>
+
+        <li>
+
+            <a href="/logout">
+
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </li>
+
+        <% } %>
 
     </ul>
 
-    <div class="hamberger" id="hamberger">
-        &#9776;
+    <div class="right-section">
+
+        <% if(currUser){ %>
+
+        <span class="welcome">
+
+            👋 <%= currUser.username %>
+
+        </span>
+
+        <% } %>
+
+        <div class="hamberger" id="hamberger">
+
+            ☰
+
+        </div>
+
     </div>
 
-
-
 </nav>
+
 <script>
 
-    const hamberger = document.getElementById('hamberger');
-    const navLinks = document.getElementById('nav-links');
+const hamberger=document.getElementById("hamberger");
 
-    hamberger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    })
+const navLinks=document.getElementById("nav-links");
+
+hamberger.addEventListener("click",()=>{
+
+navLinks.classList.toggle("active");
+
+});
+
 </script>
