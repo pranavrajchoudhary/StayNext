@@ -92,6 +92,9 @@ app.use((req,res,next)=>{
 
 
 // Routes
+const dashboardRouter = require("./routes/dashboard");
+
+app.use("/dashboard", dashboardRouter);
 app.use("/", listingsRouter);
 app.use("/listings", reviewsRouter);
 app.use("/",userRouter);
