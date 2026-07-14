@@ -1,234 +1,943 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | WanderLust</title>
-    <link rel="icon" href="/wanderlusticon.png" type="image/x-icon">
+
+    <title>StayNest | AI Powered Homestay Management Platform</title>
+
+    <meta name="description"
+        content="StayNest helps independent homestay owners manage listings, reservations, online payments and guests with AI-powered tools.">
+
+    <meta name="keywords"
+        content="StayNest, Homestay, Vacation Rental, Property Management, Booking Platform, AI Listing Assistant">
+
+    <link rel="icon" href="/staynesticon.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        
-  /* Reset and base styling */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fdfaf6;
-    color: #333;
-    line-height: 1.6;
-  
-  }
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
 
-  .container {
-    max-width: 900px;
-    margin: auto;
-    margin-bottom: 50px;
-    background-color: #ffffff;
-    padding: 2rem 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
+        html{
+            scroll-behavior:smooth;
+        }
 
-  h1 {
-    text-align: center;
-    font-size: 2.2rem;
-    color: #382b22;
-    margin-bottom: 1.5rem;
-  }
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#faf8f5;
+            color:#2d2d2d;
+            overflow-x:hidden;
+        }
 
-  p {
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-    color: #555;
-  }
+        a{
+            text-decoration:none;
+        }
 
-  strong {
-    color: #000;
-  }
+        section{
+            padding:80px 8%;
+        }
 
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-  }
+        .hero{
 
-  button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border: none;
-    border-radius: 8px;
-    background-color: #ff7e47;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+            min-height:92vh;
 
-  button:hover {
-    background-color: #e8682d;
-    transform: translateY(-2px);
-  }
-    .testimonials {
-    max-width: 1100px;
-    margin: 0 auto 60px auto;
-    padding: 2rem;
-  }
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
 
-  .testimonial {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
-    gap: 2rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease forwards;
-  }
+            gap:60px;
 
-  .testimonial:nth-child(2) {
-    flex-direction: row-reverse;
-    animation-delay: 0.2s;
-  }
+            background:
+            linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
+            url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80");
 
-  .testimonial:nth-child(3) {
-    animation-delay: 0.4s;
-  }
+            background-size:cover;
+            background-position:center;
 
-  .testimonial-img {
-    flex: 1;
-    max-width: 220px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  }
+        }
 
-  .testimonial-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+        .hero-left{
+            flex:1;
+        }
 
-  .testimonial-content {
-    flex: 2;
-  }
+        .hero-right{
+            flex:1;
+            display:flex;
+            justify-content:center;
+        }
 
-  .testimonial-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-    color: #d32323;
-  }
+        .hero-right img{
 
-  .testimonial-content p {
-    font-size: 1rem;
-    color: #444;
-  }
+            width:100%;
+            max-width:620px;
+            border-radius:22px;
+            box-shadow:0 20px 60px rgba(0,0,0,.18);
 
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+        }
 
-  @media (max-width: 768px) {
-    .testimonial {
-      flex-direction: column !important;
-      text-align: center;
-    }
+        .tag{
 
-    .testimonial-img {
-      max-width: 150px;
-    }
-  }
+            display:inline-block;
 
+            background:#ffe7d9;
 
+            color:#ff5a3d;
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 1.5rem;
-    }
+            padding:10px 18px;
 
-    .buttons {
-      flex-direction: column;
-      align-items: center;
-    }
+            border-radius:50px;
 
-    button {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
- 
+            font-size:14px;
+
+            margin-bottom:22px;
+
+            font-weight:600;
+
+        }
+
+        h1{
+
+            font-size:58px;
+
+            line-height:1.15;
+
+            margin-bottom:25px;
+
+            color:#1f2937;
+
+        }
+
+        h1 span{
+
+            color:#ff5a3d;
+
+        }
+
+        .hero p{
+
+            font-size:19px;
+
+            line-height:1.8;
+
+            color:#555;
+
+            max-width:650px;
+
+            margin-bottom:35px;
+
+        }
+
+        .hero-buttons{
+
+            display:flex;
+
+            gap:18px;
+
+            flex-wrap:wrap;
+
+        }
+
+        .btn{
+
+            padding:15px 28px;
+
+            border-radius:12px;
+
+            font-weight:600;
+
+            transition:.3s;
+
+            display:inline-flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+        }
+
+        .primary{
+
+            background:#ff5a3d;
+
+            color:white;
+
+        }
+
+        .primary:hover{
+
+            background:#eb4728;
+
+            transform:translateY(-3px);
+
+        }
+
+        .secondary{
+
+            border:2px solid #ff5a3d;
+
+            color:#ff5a3d;
+
+            background:white;
+
+        }
+
+        .secondary:hover{
+
+            background:#ff5a3d;
+
+            color:white;
+
+        }
+
+        .stats{
+
+            display:grid;
+
+            grid-template-columns:repeat(4,1fr);
+
+            gap:30px;
+
+            margin-top:60px;
+
+        }
+
+        .stat{
+
+            background:white;
+
+            padding:28px;
+
+            border-radius:18px;
+
+            text-align:center;
+
+            box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+        }
+
+        .stat h2{
+
+            color:#ff5a3d;
+
+            font-size:34px;
+
+            margin-bottom:8px;
+
+        }
+
+        .stat p{
+
+            margin:0;
+
+            font-size:15px;
+
+        }
+
+        @media(max-width:1000px){
+
+            .hero{
+
+                flex-direction:column;
+
+                text-align:center;
+
+            }
+
+            h1{
+
+                font-size:42px;
+
+            }
+
+            .hero p{
+
+                margin:auto auto 35px;
+
+            }
+
+            .hero-buttons{
+
+                justify-content:center;
+
+            }
+
+            .stats{
+
+                grid-template-columns:repeat(2,1fr);
+
+            }
+
+        }
+
+        @media(max-width:650px){
+
+            h1{
+
+                font-size:34px;
+
+            }
+
+            .stats{
+
+                grid-template-columns:1fr;
+
+            }
+
+        }
 
     </style>
 
 </head>
-<!-- <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-zeHGQI4HvdJxsC9z28tZ9_gpIPE0hDM73Q&s"> -->
 
 <body>
-    <%- include('../partials/navbar.ejs') %>
 
-<div class="container">
-  <h1>About <span style="color: #d32323;"> WanderLust</span> </h1>
+<%- include("../partials/navbar.ejs") %>
 
-  <p><h2>Hello <b style="color: rgba(235, 32, 32, 0.455);">
-  <%= currUser ? currUser.username : "Freshie" %>!
-</b></h2>
-<strong>WanderLust</strong> is a modern Airbnb-style listing platform where you can explore, add, and manage travel destinations across the world. Built for travelers and hosts alike, our mission is to make finding a stay as easy and delightful as the trip itself.</p>
+<section class="hero">
 
-  <p>Whether you want to find hidden gems, showcase your property, or just dream about where to go next — WanderLust helps you get there.</p>
+<div class="hero-left">
 
-  <p>This project is part of a full-stack application built using Node.js, Express, MongoDB, and EJS templating, styled with custom CSS to resemble the elegance and simplicity of Airbnb.</p>
+<div class="tag">
 
-  <div class="buttons">
-    <form action="/listings/new" method="get">
-      <button type="submit">Add New Listing</button>
-    </form>
-    <form action="/listings" method="get">
-      <button type="submit">View All Listings</button>
-    </form>
-  </div>
-</div>    <h1>What Our Users Felt With <span style="color: #d32323;"> WanderLust</span> </h1>
+🚀 AI Powered Homestay Management Platform
 
-<section class="testimonials">
+</div>
 
-  <div class="testimonial">
-    <div class="testimonial-img">
-      <img src="https://i.pravatar.cc/220?img=12" alt="User 1">
+<h1>
+
+Welcome,
+
+<span>
+
+<%= currUser ? currUser.username : "Guest" %>
+
+</span>
+
+<br>
+
+Manage Homestays Smarter with <span>StayNest</span>
+
+</h1>
+
+<p>
+
+StayNest is a next-generation homestay management platform built for independent property owners. Create professional listings, manage reservations, accept secure online payments, track bookings, and soon leverage AI to generate property descriptions, pricing suggestions, and guest communication—all from one unified dashboard.
+
+</p>
+
+<div class="hero-buttons">
+
+<form action="/listings" method="GET">
+
+<button class="btn primary">
+
+Explore Properties
+
+</button>
+
+</form>
+
+<form action="/listings/new" method="GET">
+
+<button class="btn secondary">
+
+List Your Property
+
+</button>
+
+</form>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<h2>24/7</h2>
+
+<p>Booking Availability</p>
+
+</div>
+
+<div class="stat">
+
+<h2>AI</h2>
+
+<p>Listing Assistant</p>
+
+</div>
+
+<div class="stat">
+
+<h2>Secure</h2>
+
+<p>Stripe Payments</p>
+
+</div>
+
+<div class="stat">
+
+<h2>Smart</h2>
+
+<p>Reservation Management</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+<!-- ================= FEATURES ================= -->
+
+<section style="background:#ffffff;">
+
+    <div style="text-align:center;max-width:900px;margin:auto;margin-bottom:70px;">
+
+        <span style="
+        background:#FFE8DF;
+        color:#ff5a3d;
+        padding:10px 20px;
+        border-radius:40px;
+        font-weight:600;
+        font-size:14px;
+        ">
+
+            Why Choose StayNest?
+
+        </span>
+
+        <h2 style="
+        margin-top:20px;
+        font-size:42px;
+        color:#1f2937;
+        ">
+
+            Everything a Modern Homestay Owner Needs
+
+        </h2>
+
+        <p style="
+        margin-top:20px;
+        color:#666;
+        font-size:18px;
+        line-height:1.8;
+        ">
+
+            StayNest is designed to replace fragmented WhatsApp conversations,
+            spreadsheets, manual bookings, and offline payment tracking with one
+            intelligent platform.
+
+        </p>
+
     </div>
-    <div class="testimonial-content">
-      <h3>Alex Johnson</h3>
-      <p>“WanderLust made my backpacking trip so smooth! Booking local homestays was never this easy, and every host I met was super welcoming.”</p>
-    </div>
-  </div>
 
-  <div class="testimonial">
-    <div class="testimonial-img">
-      <img src="https://i.pravatar.cc/220?img=32" alt="User 2">
-    </div>
-    <div class="testimonial-content">
-      <h3>Priya Mehra</h3>
-      <p>“I listed my family cottage on WanderLust and started receiving bookings within a week! The platform is clean and user-friendly.”</p>
-    </div>
-  </div>
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    ">
 
-  <div class="testimonial">
-    <div class="testimonial-img">
-      <img src="https://i.pravatar.cc/220?img=45" alt="User 3">
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        transition:.3s;
+        ">
+
+            <h3 style="font-size:26px;">🏡 Smart Property Listings</h3>
+
+            <p style="margin-top:18px;">
+
+                Create professional property listings with beautiful images,
+                pricing, amenities, maps, and reviews—all managed from one
+                dashboard.
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        ">
+
+            <h3 style="font-size:26px;">📅 Reservation Management</h3>
+
+            <p style="margin-top:18px;">
+
+                Manage bookings, prevent overlapping reservations,
+                monitor upcoming check-ins and cancellations,
+                and simplify guest management.
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        ">
+
+            <h3 style="font-size:26px;">💳 Secure Payments</h3>
+
+            <p style="margin-top:18px;">
+
+                Accept secure online payments through Stripe while
+                automatically maintaining reservation records and
+                payment status.
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        ">
+
+            <h3 style="font-size:26px;">🤖 AI Listing Assistant</h3>
+
+            <p style="margin-top:18px;">
+
+                Generate professional property descriptions,
+                house rules, amenities, guest recommendations,
+                and SEO-friendly listings using AI.
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        ">
+
+            <h3 style="font-size:26px;">📈 Business Analytics</h3>
+
+            <p style="margin-top:18px;">
+
+                Track occupancy,
+                monthly revenue,
+                successful bookings,
+                pending payments,
+                and business performance from one dashboard.
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        padding:35px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+        ">
+
+            <h3 style="font-size:26px;">📧 Automated Operations</h3>
+
+            <p style="margin-top:18px;">
+
+                Send booking confirmations,
+                invoices,
+                reminders,
+                payment receipts,
+                and guest communication automatically.
+
+            </p>
+
+        </div>
+
     </div>
-    <div class="testimonial-content">
-      <h3>David Kim</h3>
-      <p>“The UI is so elegant and reminiscent of Airbnb. It helped me discover lesser-known gems while traveling across Europe. Highly recommend it!”</p>
-    </div>
-  </div>
+
 </section>
 
-<%- include('../partials/footer.ejs') %>
+
+
+<!-- ================= AI ================= -->
+
+<section style="background:#fff7f3;">
+
+    <div style="
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    flex-wrap:wrap;
+    ">
+
+        <div style="flex:1;min-width:320px;">
+
+            <span style="
+            background:#ffe0d6;
+            color:#ff5a3d;
+            padding:10px 18px;
+            border-radius:30px;
+            font-weight:600;
+            ">
+
+                Coming Soon
+
+            </span>
+
+            <h2 style="
+            margin-top:25px;
+            font-size:44px;
+            color:#222;
+            ">
+
+                AI Powered Property Management
+
+            </h2>
+
+            <p style="
+            margin-top:20px;
+            font-size:18px;
+            color:#666;
+            line-height:1.9;
+            ">
+
+                StayNest integrates Generative AI to assist
+                homestay owners with listing creation,
+                pricing suggestions,
+                guest messaging,
+                local attraction recommendations,
+                and booking insights.
+
+            </p>
+
+            <div style="margin-top:35px;">
+
+                <ul style="
+                line-height:2.2;
+                font-size:17px;
+                color:#444;
+                ">
+
+                    <li>✅ AI Listing Description Generator</li>
+
+                    <li>✅ AI Smart Pricing Suggestions</li>
+
+                    <li>✅ AI Guest Reply Generator</li>
+
+                    <li>✅ AI House Rule Generator</li>
+
+                    <li>✅ AI Travel Recommendations</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div style="
+        flex:1;
+        display:flex;
+        justify-content:center;
+        min-width:300px;
+        ">
+
+            <img
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80"
+            style="
+            width:100%;
+            max-width:520px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,.18);
+            ">
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= TESTIMONIALS ================= -->
+
+<section style="background:#ffffff;">
+
+    <div style="text-align:center;margin-bottom:60px;">
+
+        <span style="
+        background:#FFE8DF;
+        color:#ff5a3d;
+        padding:10px 18px;
+        border-radius:30px;
+        font-weight:600;
+        ">
+
+            Trusted by Property Owners
+
+        </span>
+
+        <h2 style="
+        margin-top:20px;
+        font-size:42px;
+        color:#1f2937;
+        ">
+
+            Real Stories. Real Growth.
+
+        </h2>
+
+        <p style="
+        margin-top:20px;
+        font-size:18px;
+        color:#666;
+        max-width:760px;
+        margin-inline:auto;
+        ">
+
+            StayNest helps independent hosts digitize their homestay business,
+            simplify guest management, and accept online bookings with confidence.
+
+        </p>
+
+    </div>
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+    ">
+
+        <div style="
+        background:#fafafa;
+        border-radius:22px;
+        padding:35px;
+        box-shadow:0 12px 30px rgba(0,0,0,.08);
+        ">
+
+            <img
+            src="https://i.pravatar.cc/120?img=18"
+            style="
+            width:75px;
+            height:75px;
+            border-radius:50%;
+            margin-bottom:20px;
+            ">
+
+            <h3 style="margin-bottom:10px;">
+                Rahul Sharma
+            </h3>
+
+            <small style="color:#ff5a3d;font-weight:600;">
+                Farmhouse Owner • Madhya Pradesh
+            </small>
+
+            <p style="
+            margin-top:18px;
+            line-height:1.8;
+            ">
+
+                "Before StayNest, I handled every booking over WhatsApp.
+                Now reservations, guest details, payments and availability are
+                all managed in one place. It has saved me several hours every week."
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        border-radius:22px;
+        padding:35px;
+        box-shadow:0 12px 30px rgba(0,0,0,.08);
+        ">
+
+            <img
+            src="https://i.pravatar.cc/120?img=32"
+            style="
+            width:75px;
+            height:75px;
+            border-radius:50%;
+            margin-bottom:20px;
+            ">
+
+            <h3 style="margin-bottom:10px;">
+                Priya Mehra
+            </h3>
+
+            <small style="color:#ff5a3d;font-weight:600;">
+                Villa Owner • Goa
+            </small>
+
+            <p style="
+            margin-top:18px;
+            line-height:1.8;
+            ">
+
+                "The dashboard makes it incredibly easy to monitor bookings,
+                revenue and occupancy. Guests appreciate the secure payment
+                experience and instant confirmations."
+
+            </p>
+
+        </div>
+
+        <div style="
+        background:#fafafa;
+        border-radius:22px;
+        padding:35px;
+        box-shadow:0 12px 30px rgba(0,0,0,.08);
+        ">
+
+            <img
+            src="https://i.pravatar.cc/120?img=45"
+            style="
+            width:75px;
+            height:75px;
+            border-radius:50%;
+            margin-bottom:20px;
+            ">
+
+            <h3 style="margin-bottom:10px;">
+                Arjun Patel
+            </h3>
+
+            <small style="color:#ff5a3d;font-weight:600;">
+                Homestay Owner • Himachal Pradesh
+            </small>
+
+            <p style="
+            margin-top:18px;
+            line-height:1.8;
+            ">
+
+                "The upcoming AI assistant is exactly what I need.
+                Generating property descriptions and replying to guests
+                will become much faster."
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section
+style="
+background:linear-gradient(135deg,#ff5a3d,#ff784f);
+padding:90px 8%;
+color:white;
+text-align:center;
+">
+
+<h2
+style="
+font-size:46px;
+margin-bottom:20px;
+">
+
+Ready to Modernize Your Homestay?
+
+</h2>
+
+<p
+style="
+max-width:800px;
+margin:auto;
+font-size:19px;
+line-height:1.9;
+opacity:.95;
+">
+
+Whether you're managing a farmhouse, villa, cottage, apartment,
+or vacation rental, StayNest provides everything needed to
+accept online bookings, manage reservations,
+receive secure payments,
+and grow your hospitality business.
+
+</p>
+
+<div
+style="
+margin-top:45px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+">
+
+<form action="/listings/new" method="GET">
+
+<button
+style="
+padding:16px 34px;
+background:white;
+color:#ff5a3d;
+font-weight:700;
+font-size:17px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+">
+
+Register Your Property
+
+</button>
+
+</form>
+
+<form action="/listings" method="GET">
+
+<button
+style="
+padding:16px 34px;
+background:transparent;
+border:2px solid white;
+color:white;
+font-weight:700;
+font-size:17px;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+">
+
+Explore Properties
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<%- include("../partials/footer.ejs") %>
 
 </body>
+
 </html>
